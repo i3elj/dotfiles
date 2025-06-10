@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-i3status | while :
-do
-    read line
-    layout=$(setxkbmap -query | grep layout | awk '{ print $2 }')
-    echo "$layout  $line" || exit 1
-done

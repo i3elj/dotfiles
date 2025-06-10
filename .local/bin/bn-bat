@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-cap=$(cat /sys/class/power_supply/BAT1/capacity)
-status=$(cat /sys/class/power_supply/BAT1/status)
-echo "${status:0:1} $cap%"
