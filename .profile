@@ -20,11 +20,17 @@ export PATH="$PATH:$HOME/.local/bin/"
 export PATH="$PATH:$HOME/.local/bin/snippets/"
 export PATH="$PATH:./node_modules/.bin/"
 
+export QT_QPA_PLATFORM=wayland
+# export XDG_CURRENT_DESKTOP=sway
+# export XDG_SESSION_DESKTOP=sway
+export XDG_CURRENT_SESSION_TYPE=wayland
+export LC_ALL="en_US.UTF-8"
+
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # xrdb ~/.config/X11/Xresources &
 # mpv --no-video ~/Music/DesktopSounds/Windows\ Vista\ Startup.mp3 &
-# dunst &
+# mako &
 # picom &
 
 # xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "libinput Tapping Enabled" 1 &
@@ -32,14 +38,15 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "libinput Horizontal Scroll Enabled" 1 &
 # xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "libinput Scrolling Pixel Distance" 25 &
 
-# emacs --daemon --with-x-toolkit=lucid &
+# emacs --daemon &
+# gammastep &
+# lxpolkit &
 # setxkbmap -option ctrl:swapcaps &
 # xset r rate 500 50 &
 # xset +dpms &
 # xset s on &
 # sh ~/.fehbg &
-# gammastep -l 0:0 -t 3000:3000 &
 
-volumeicon & sleep
-nm-applet & sleep 1
+# volumeicon & sleep
+# nm-applet & sleep 1
 # cbatticon & sleep 1

@@ -16,7 +16,6 @@
 (load-file "~/.emacs.d/modes.el")
 (load-file "~/.emacs.d/hooks.el")
 (load-file "~/.emacs.d/org-babel.el")
-(load-file "~/.emacs.d/minor-mode.el")
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
 	  backup-by-copying t
@@ -25,8 +24,15 @@
 	  kept-new-versions 20
 	  kept-old-versions 5)
 
-;; (set-face-attribute 'default nil :height 155 :family "Iosevka")
-(set-frame-font "Source Code Pro-12")
+(set-face-attribute 'default nil :family "Liberation Mono" :height 120)
 (consult-theme 'seashell)
-;; (consult-theme 'wombat)
-(my-keys-minor-mode 1)
+
+(setq default-frame-alist
+	  '((height . 40) (width . 86)
+		(left . 480) (top . 46)
+		(vertical-scroll-bars . nil)
+		(horizontal-scroll-bars . nil)
+		(tool-bar-lines . 0)
+		(alpha-background . 100)))
+
+(desktop-save-mode 1)

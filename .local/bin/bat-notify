@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
-while true; do
-	cap=$(acpi -b | awk '{print $4}' | cut -d, -f 1 | cut -d% -f 1)
-	status=$(acpi -b | awk '{print $3}' | cut -d, -f 1)
+cap=$(acpi -b | awk '{print $4}' | cut -d, -f 1 | cut -d% -f 1)
+status=$(acpi -b | awk '{print $3}' | cut -d, -f 1)
 
-	if [[ $cap -lt 20 && $status == "Discharging" ]]; then
-		notify-send "Battery discharging: $cap"
-	elif [[ $cap -eq 80 && $status == "Charging" ]]; then
-		notify-send "Battery full: $cap"
-	fi
+if [[ $cap -lt 22 && $status == "Discharging" ]]; then
+	notify-send "Battery discharging: $cap"
+elif [[ $cap -eq 80 && $status == "Charging" ]]; then
+	notify-send "Battery full: $cap"
+fi
 
-	sleep 60
-done

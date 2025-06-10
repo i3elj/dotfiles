@@ -1,20 +1,25 @@
 ;; Code ;;
-;; (add-hook 'prog-mode-hook #'my/olivetti-settings)
+(add-hook 'prog-mode-hook #'my/olivetti-settings)
 (add-hook 'prog-mode-hook (lambda ()
-                            (adaptive-wrap-prefix-mode)))
+							(adaptive-wrap-prefix-mode)))
+(add-hook 'prog-mode-hook (lambda () (cua-mode)))
+(add-hook 'web-mode-hook 'company-mode)
+(add-hook 'web-mode-hook 'hs-minor-mode)
+(add-hook 'sql-mode-hook 'indent-tabs-mode)
+(add-hook 'elixir-ts-mode-hook
+		  (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+(add-hook 'heex-ts-mode-hook
+		  (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;; org ;;
 (add-hook 'org-mode-hook 'my/org-settings)
 
 ;; dired ;;
-(add-hook 'dired-mode-hook 'treemacs-icons-dired-mode)
-(add-hook 'dired-mode-hook (lambda ()
-                             (dired-hide-details-mode 1)
-                             (setq display-line-numbers nil)))
-
-;; languages ;;
-(add-hook 'lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'dired-mode-hook
+		  (lambda ()
+			;; (dired-hide-details-mode 1)
+			(nerd-icons-dired-mode)
+			(setq display-line-numbers nil)))
 
 ;; post before, after ;;
 (add-hook 'post-command-hook #'my/god-mode-update-cursor-type)

@@ -4,59 +4,70 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(Man-notify-method 'pushy)
  '(c-basic-offset 4)
  '(column-number-mode t)
  '(completion-cycle-threshold 3)
- '(default-frame-alist '((undecorated . t)))
+ '(confirm-kill-emacs nil)
+ '(custom-safe-themes
+   '("d46d30357ff92894b1f16b4d1219421bcc028aa3bd3def87ec031dcdb149506d" default))
+ '(dired-dwin-target t)
  '(dired-kill-when-opening-new-dired-buffer t)
  '(dired-listing-switches "-aBhl  --group-directories-first")
  '(display-battery-mode nil)
  '(display-line-numbers nil)
  '(display-time-mode nil)
- '(dtrt-indent-global-mode t)
+ '(dtrt-indent-global-mode nil)
  '(fill-column 80)
  '(global-visual-line-mode t)
  '(go-ts-mode-indent-offset 4)
  '(hscroll-step 0)
- '(indent-tabs-mode 1)
+ '(ido-mode nil nil (ido))
+ '(indent-tabs-mode t)
  '(inhibit-startup-screen t)
- '(line-spacing 0.15)
+ '(initial-buffer-choice 'other-buffer)
+ '(line-spacing 6)
  '(menu-bar-mode nil)
  '(mouse-drag-and-drop-region t)
  '(org-agenda-files
-   '("~/Projects/tusk/README.org" "/home/bn/Documents/Journal/Notes.org" "/home/bn/Documents/Journal/Agenda.org"))
+   '("~/Projects/tusk/README.org" "/home/bn/Documents/Journal/Notes.org"
+	 "/home/bn/Documents/Journal/Agenda.org"))
+ '(org-fontify-quote-and-verse-blocks t)
  '(org-format-latex-options '(:scale 1.5))
+ '(org-hide-leading-stars t)
  '(org-html-checkbox-type 'html)
  '(org-image-actual-width (list 550))
+ '(org-link-frame-setup
+   '((vm . vm-visit-folder-other-frame)
+	 (vm-imap . vm-visit-imap-folder-other-frame) (gnus . org-gnus-no-new-news)
+	 (file . find-file) (wl . wl-other-frame)))
  '(org-modern-fold-stars
-   '(("◉" . "◉")
-     ("○" . "○")
-     ("◈" . "◈")
-     ("◇" . "◇")
-     ("✳" . "✳")))
+   '(("◉" . "◉") ("○" . "○") ("◈" . "◈") ("◇" . "◇") ("✳" . "✳")))
  '(org-modern-replace-stars "◉○◈◇✳")
  '(org-startup-folded t)
  '(package-selected-packages
-   '(centaur-tabs sr-speedbar yasnippet-snippets yasnippets cape wrap-region yasnippet-capf yasnippet paredit adaptive-wrap dtrt-indent corfu company-quickhelp rust-mode focus darkroom gtags-mode mini-modeline transpose-frames transpose-frame smex templ-ts-mode lfe-mode rainbow-delimiters sly company auto-complete go-autocomplete vterm elixir-mode cloud-theme vscode-dark-plus-theme almost-mono-themes lua-mode mindre-theme php-mode org-modern flycheck dired-preview zig-mode julia-repl julia-mode racket-mode go-mode lsp-ivy lsp-ui lsp-mode ligature tab-bar-echo-area minions consult orderless treemacs-icons-dired treemacs multiple-cursors git-gutter noccur magit which-key vertico olivetti god-mode elixir-ts-mode haskell-mode web-mode ox-reveal page-break-lines ob-elixir ob-php quelpa-use-package))
- '(package-vc-selected-packages
-   '((php-ts-mode :vc-backend Git :url "https://github.com/emacs-php/php-ts-mode")))
+   '(adaptive-wrap cmake-mode company consult dtrt-indent flycheck go-mode god-mode
+				   ligature lsp-mode magit minions nerd-icons-dired olivetti
+				   orderless org-modern page-break-lines qml-mode
+				   quelpa-use-package transpose-frame vertico-posframe web-mode
+				   yaml-mode))
  '(pixel-scroll-precision-interpolate-page nil)
  '(pixel-scroll-precision-interpolation-total-time 0.2)
- '(pixel-scroll-precision-mode t)
+ '(pixel-scroll-precision-mode nil)
  '(repeat-mode t)
  '(scroll-bar-mode nil)
+ '(scroll-conservatively 1000)
  '(scroll-step 10)
  '(speedbar-use-images nil)
  '(split-height-threshold 80)
  '(split-width-threshold 120)
- '(tab-bar-show nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(treesit-font-lock-level 4)
  '(truncate-lines t nil nil "Customized with use-package olivetti")
- '(vertico-mode nil)
- '(visible-bell 1))
-
+ '(vertico-mode t)
+ '(visible-bell 1)
+ '(whitespace-style '(trailing tabs indentation tab-mark)))
 
 (set-frame-parameter nil 'internal-border-width 0)
 (put 'downcase-region 'disabled nil)

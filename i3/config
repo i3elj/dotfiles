@@ -3,18 +3,48 @@ set $win Mod4
 
 font pango:Source Code Pro 8
 title_align left
-default_border normal 1
+default_border pixel 4
 floating_modifier $win
 # tiling_drag modifier titlebar
-hide_edge_borders smart_no_gaps
-smart_gaps on
+# hide_edge_borders smart
+# smart_gaps off
 focus_on_window_activation focus
 focus_follows_mouse yes
 focus_wrapping yes
+workspace_layout tabbed
 for_window [class=".*"] title_format " %title"
 
-gaps inner 0
-gaps outer 0
+gaps inner 10
+gaps outer 20
+
+input 39658:4137:K68_BT5.0_Keyboard {
+	xkb_layout us
+	xkb_options "ctrl:swapcaps,compose:ralt"
+	repeat_rate 50
+	repeat_delay 500
+}
+
+input 1:1:AT_Translated_Set_2_keyboard {
+	xkb_layout br
+	xkb_options "ctrl:swapcaps"
+}
+
+input type:touchpad {
+	accel_profile    flat
+	scroll_method    two_finger
+	scroll_factor    0.15
+	pointer_accel    0.55
+	dwt              enabled
+	middle_emulation enabled
+	natural_scroll   enabled
+	tap              enabled
+}
+
+input type:pointer {
+	accel_profile flat
+	pointer_accel 0.85
+	middle_emulation enabled
+}
 
 # exec_always --no-startup-id setxkbmap -layout br -option ctrl:swapcaps
 # exec_always --no-startup-id xset r rate 500 75
@@ -22,13 +52,23 @@ exec_always --no-startup-id xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "lib
 exec_always --no-startup-id xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "libinput Middle Emulation Enabled" 1
 exec_always --no-startup-id xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "libinput Horizontal Scroll Enabled" 1
 exec_always --no-startup-id xinput set-prop "PNP0C50:01 0911:5288 Touchpad" "libinput Scrolling Pixel Distance" 25
-exec_always --no-startup-id swaybg -m fill -i ~/Pictures/Wallpapers/a_group_of_flowers_growing_out_of_a_rocky_area.jpg
-# exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec --no-startup-id swaybg -m fill -i ~/Pictures/Wallpapers/a_group_of_flowers_growing_out_of_a_rocky_area.jpg
+exec --no-startup-id swayidle -w timeout 300 'swaylock -f -c 000000' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f -c 000000'
+
+
+exec_always --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec_always --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+exec --no-startup-id waytrogen --restore
+exec --no-startup-id mako
+# exec --no-startup-id pipewire
+# exec --no-startup-id pipewire-pulse
+# exec --no-startup-id pipewire-media-session
+exec --no-startup-id emacs --daemon
+exec --no-startup-id gammastep
+exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec --no-startup-id /home/bern/.local/bin/back_and_forth
 exec --no-startup-id /home/bern/.local/bin/bat-notify
-exec --no-startup-id gammastep
-exec --no-startup-id nm-applet --indicator
-# exec --no-startup-id lxpolkit
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -38,35 +78,35 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym $win+f exec light -U 5
-bindsym $win+g exec light -A 5
-bindsym --release Print exec /home/bern/.local/bin/sway-screenshot -m region
-bindsym --release Shift+Print exec /home/bern/.local/bin/sway-screenshot -o /home/bern/Pictures/Screenshots
+bindsym $win+y exec brightnessctl s 10%-
+bindsym $win+u exec brightnessctl s +10%
+bindsym --release Print exec flameshot gui -c
+bindsym --release Shift+Print exec flameshot gui -p ~/Pictures/Screenshots
 
 set $terminal kitty
-set $web      zen
-set $editor   emacs
-set $clis     wofi --show drun
-set $apps     wofi --show run
+set $web      zen-browser
+set $editor   emacsclient --alternate-editor= --create-frame
+set $apps     wofi --show drun
+set $clis     dmenu_run
+# set $clis     bemenu-run --tb "#b5cde0" --tf "#f5f5f5" --fb "#f5f5f5" --ff "#565656" --nf "#565656" --nb "#f5f5f5" --hb "#b5cde0" --hf "#f5f5f5" --ab "#f5f5f5" --af "#565656" -p "λ" --fn "JetBrainsMono Nerd Font" -c -B 1 --bdr "#b5cde0" -l 10 -s --fixed-height -M 600 -P →
 
 # start a terminal
-bindsym $win+Return     exec $terminal
-bindsym $win+e          exec $editor
-bindsym $win+w          exec $web
-bindsym $win+d          exec discord
-bindsym $win+space      exec $apps
-bindsym $win+alt+space exec $clis
-bindsym $win+n          exec $editor ~/Documents/Journal/Notes.org
+bindsym $win+Return      exec $terminal
+bindsym $win+alt+space   exec $apps
+bindsym F2        		 exec $clis
+bindsym $win+e           exec $editor
 
 # kill focused window
 bindsym $win+c kill
 bindsym button3 kill
+bindsym --whole-window $win+button4 focus next
+bindsym --whole-window $win+button5 focus prev
 
 # change focus
-bindsym $win+h focus left
-bindsym $win+j focus down
-bindsym $win+k focus up
-bindsym $win+l focus right
+bindsym $win+w focus up
+bindsym $win+a focus left
+# bindsym $win+s focus down
+bindsym $win+d focus right
 bindsym $alt+Tab [con_mark=_prev] focus
 bindgesture swipe:right focus right
 bindgesture swipe:left focus left
@@ -78,10 +118,10 @@ bindsym $win+Up    focus up
 bindsym $win+Right focus right
 
 # move focused window
-bindsym $win+Shift+h move left
-bindsym $win+Shift+j move down
-bindsym $win+Shift+k move up
-bindsym $win+Shift+l move right
+bindsym $win+Shift+w move up
+bindsym $win+Shift+a move left
+bindsym $win+Shift+s move down
+bindsym $win+Shift+d move right
 
 # alternatively, you can use the cursor keys:
 bindsym $win+Shift+Left  move left
@@ -92,18 +132,18 @@ bindsym $win+Shift+Right move right
 # move/show scratchpad
 bindsym $win+s move scratchpad
 bindsym $win+ctrl+s scratchpad show
+bindsym --whole-window $win+ctrl+button3 scratchpad show
 
 # split in h -> horizontal; v -> vertical
 bindsym $win+z split h
 bindsym $win+v split v
 
 # enter fullscreen mode for the focused container
-bindsym F11 fullscreen toggle
+bindsym $win+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $alt+ctrl+1 layout stacking
-bindsym $alt+ctrl+2 layout tabbed
-bindsym $alt+ctrl+3 layout toggle split
+bindsym $win+j layout tabbed
+bindsym $win+k layout toggle split
 
 # toggle tiling / floating
 bindsym $win+shift+space floating toggle
@@ -152,24 +192,24 @@ bindsym $win+r reload
 bindsym $win+Shift+r restart
 
 # resize window (you can also use the mouse for that)
-set $ResizeMode "Resize: hjkl or ←↑↓→"
-Bindsym $win+p mode $ResizeMode
-mode $ResizeMode {
-	bindsym h resize shrink width  3 px or 3 ppt
-	bindsym j resize shrink height 3 px or 3 ppt
-	bindsym k resize grow   height 3 px or 3 ppt
-	bindsym l resize grow   width  3 px or 3 ppt
+#set $ResizeMode "Resize: hjkl or ←↑↓→"
+#Bindsym $win+p mode $ResizeMode
+#mode $ResizeMode {
+#	bindsym h resize shrink width  3 px or 3 ppt
+#	bindsym j resize shrink height 3 px or 3 ppt
+#	bindsym k resize grow   height 3 px or 3 ppt
+#	bindsym l resize grow   width  3 px or 3 ppt
+#
+#	bindsym Left  resize shrink width  3 px or 3 ppt
+#	bindsym Down  resize shrink height 3 px or 3 ppt
+#	bindsym Up    resize grow   height 3 px or 3 ppt
+#	bindsym Right resize grow   width  3 px or 3 ppt
+#
+#	bindsym Return mode "default"
+#	bindsym Escape mode "default"
+#}
 
-	bindsym Left  resize shrink width  3 px or 3 ppt
-	bindsym Down  resize shrink height 3 px or 3 ppt
-	bindsym Up    resize grow   height 3 px or 3 ppt
-	bindsym Right resize grow   width  3 px or 3 ppt
-
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-
-bindsym $win+t exec changekb
+# bindsym $win+t exec changekb
 # set $KeyboardMode "Switch Layout: (1)dvorak, (2)br-dvorak, (3)qwerty-br"
 # bindsym $win+t mode $KeyboardMode
 # mode $KeyboardMode {
@@ -188,27 +228,11 @@ mode $SysMode {
 	bindsym e exit
 	bindsym r exec systemctl reboot
 	bindsym s exec systemctl suspend     , mode "default"
-	bindsym l exec loginctl lock-session , mode "default"
+	bindsym l exec swaylock -F -l -i "~/Pictures/a_group_of_flowers_growing_out_of_a_rocky_area-blur.jpg" , mode "default"
 	bindsym p exec poweroff              , mode "default"
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
-}
-
-input 39658:4137:K68_BT5.0_Keyboard {
-	  xkb_layout us
-	  xkb_options "ctrl:swapcaps,compose:ralt"
-}
-
-input 1:1:AT_Translated_Set_2_keyboard {
-	  xkb_layout us
-	  xkb_options "ctrl:swapcaps,compose:ralt"
-}
-
-input type:touchpad {
-	  tap enabled
-	  natural_scroll enabled
-	  # scroll_factor 0.15
 }
 
 set $fg_norm     #545454
@@ -235,13 +259,17 @@ set $blue        #4c7899
 set $darkblue    #285577
 set $lightblue   #2e9ef4
 set $paleblue    #99aebf
-set $palerblue #b5cde0
+set $palerblue   #b5cde0
 set $transparent #ffffffff
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bindsym $win+Tab workspace back_and_forth
+
+bindsym $win+b bar mode toggle
 bar {
+   # mode hide
+   modifier none
    status_command i3blocks
    strip_workspace_numbers no
    position bottom
@@ -266,7 +294,7 @@ bar {
 # light theme
 # class                 $border     $backgr     $text           $indicator  $child_border
 client.focused			$paleblue	$palerblue	$black			$paleblue	$paleblue
-client.focused_inactive	$paleblue	$grayblue	$black			$grayblue	$grayblue
+client.focused_inactive	$palerblue	$grayblue	$black			$grayblue	$palerblue
 client.unfocused		$paleblue	$grayblue	$black			$grayblue	$grayblue
 client.urgent			$darkblue	$red		$white			$darkblue	$darkblue
 client.placeholder		$black		$darkblue	$darkblue		$darkblue	$darkblue
@@ -278,19 +306,24 @@ assign [class="firefox"] $ws1
 assign [class="thunderbird"] $ws7
 assign [class="obs"] $ws8
 
+for_window [class="steam"] floating enable
+for_window [class="steam"] border normal
+
+for_window [title="Layer Select"] floating enable
+for_window [title="iwctl"] floating enable
+
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Pcmanfm"] floating enable
 for_window [class="pavucontrol"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
-for_window [class="loupe"] floating enable
 
-for_window [class="gnome-calculator"] floating enable
-for_window [class="gnome-calculator"] border normal
+#for_window [app_id="ssh-askpass-sublime"] floating enable
+#for_window [app_id="gsimplecal"] move position 1707px 855px; border pixel 1
 
-for_window [class="Nautilus"] floating enable
-for_window [class="Nautilus"] border normal
-
-for_window [class="steam"] floating enable
-for_window [class="steam"] border normal
+#for_window [app_id="org.gnome.Calculator"] floating enable
+#for_window [app_id="org.gnome.Loupe"] floating enable
+#for_window [app_id="org.gnome.Nautilus"] floating enable
+#for_window [app_id="org.kde.dolphin"] floating enable
+#for_window [app_id="org.kde.okular"] floating enable
 
 exec /usr/libexec/xdg-desktop-portal-gtk
