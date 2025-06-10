@@ -2,7 +2,6 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (eval-when-compile (require 'use-package))
 
-(add-to-list 'load-path "~/.emacs.d/custom-packages")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/custom-themes")
 ;; (add-to-list 'default-frame-alist '(undecorated . t))
 

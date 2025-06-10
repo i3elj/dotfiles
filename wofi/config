@@ -1,9 +1,0 @@
-allow_images=true
-image_size=32
-width=30%
-lines=5
-insensitive=true
-no_actions=true
-key_up=tab
-key_down=shift_l-tab
-location=center
