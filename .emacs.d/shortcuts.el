@@ -14,12 +14,13 @@
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
 (global-unset-key (kbd "C-z"))
 
-;; ;; multiple cursors
-;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-g")
+				(lambda ()
+				  (interactive)
+				  (if (eq (god-local-mode) 0)
+					  (god-local-mode 1)
+					(keyboard-escape-quit))))
 
-(global-set-key (kbd "C-c C-j") (lambda () (interactive) (god-local-mode 1)))
 (define-key god-local-mode-map (kbd "i") #'god-local-mode)
 (define-key god-local-mode-map (kbd ".") #'repeat)
 (define-key god-local-mode-map (kbd "<f11>") 'toggle-frame-fullscreen)

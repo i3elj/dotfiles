@@ -46,11 +46,10 @@
  '(org-modern-replace-stars "◉○◈◇✳")
  '(org-startup-folded t)
  '(package-selected-packages
-   '(adaptive-wrap cmake-mode company consult dtrt-indent flycheck go-mode god-mode
-				   ligature lsp-mode magit minions nerd-icons-dired olivetti
-				   orderless org-modern page-break-lines qml-mode
-				   quelpa-use-package transpose-frame vertico-posframe web-mode
-				   yaml-mode))
+   '(adaptive-wrap company consult dtrt-indent flycheck go-mode god-mode ligature
+				   lsp-mode magit minions nerd-icons-dired olivetti orderless
+				   org-modern page-break-lines quelpa-use-package
+				   transpose-frame vertico-posframe web-mode))
  '(pixel-scroll-precision-interpolate-page nil)
  '(pixel-scroll-precision-interpolation-total-time 0.2)
  '(pixel-scroll-precision-mode nil)
