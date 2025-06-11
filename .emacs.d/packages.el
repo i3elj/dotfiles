@@ -52,7 +52,6 @@
 
 ;; beautifiers
 (use-package minions :ensure t :hook (prog-mode . minions-mode))
-(use-package nerd-icons-dired :ensure t)
 
 ;; language servers
 (use-package eglot

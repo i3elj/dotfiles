@@ -18,7 +18,6 @@
 (add-hook 'dired-mode-hook
 		  (lambda ()
 			;; (dired-hide-details-mode 1)
-			(nerd-icons-dired-mode)
 			(setq display-line-numbers nil)))
 
 ;; post before, after ;;
