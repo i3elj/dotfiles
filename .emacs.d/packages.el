@@ -52,6 +52,7 @@
 
 ;; beautifiers
 (use-package minions :ensure t :hook (prog-mode . minions-mode))
+(use-package tab-bar-echo-area :ensure :config (tab-bar-echo-area-mode 1))
 
 ;; language servers
 (use-package eglot

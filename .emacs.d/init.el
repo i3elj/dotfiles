@@ -27,7 +27,7 @@
 (consult-theme 'seashell)
 
 (setq default-frame-alist
-	  '((height . 40) (width . 86)
+	  '((height . 48) (width . 86)
 		(left . 480) (top . 46)
 		(vertical-scroll-bars . nil)
 		(horizontal-scroll-bars . nil)

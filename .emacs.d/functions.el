@@ -226,7 +226,6 @@ function."
   ;; (set-face-attribute 'org-block            nil :family "Iosevka")
   ;; (set-face-attribute 'org-block-begin-line nil :family "Iosevka")
   ;; (set-face-attribute 'org-table            nil :family "Iosevka")
-  (page-break-lines-mode)
   (org-indent-mode)
   (org-modern-mode)
   (visual-line-mode)

@@ -14,12 +14,14 @@
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
 (global-unset-key (kbd "C-z"))
 
-(global-set-key (kbd "C-g")
-				(lambda ()
-				  (interactive)
-				  (if (eq (god-local-mode) 0)
-					  (god-local-mode 1)
-					(keyboard-escape-quit))))
+(defun my/god-mode-or-exit()
+  (interactive)
+  (if (eq (god-local-mode) 0)
+	  (god-local-mode 1)
+	(keyboard-escape-quit)))
+
+(global-set-key (kbd "C-g") #'my/god-mode-or-exit)
+(global-set-key (kbd "<escape>") #'my/god-mode-or-exit)
 
 (define-key god-local-mode-map (kbd "i") #'god-local-mode)
 (define-key god-local-mode-map (kbd ".") #'repeat)
