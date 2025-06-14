@@ -45,7 +45,11 @@
    '(("◉" . "◉") ("○" . "○") ("◈" . "◈") ("◇" . "◇") ("✳" . "✳")))
  '(org-modern-replace-stars "◉○◈◇✳")
  '(org-startup-folded t)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(adaptive-wrap company consult dtrt-indent flycheck go-mode god-mode magit
+				   minions nerd-icons-dired olivetti orderless org-modern
+				   quelpa-use-package tab-bar-echo-area transpose-frame
+				   vertico-posframe web-mode))
  '(pixel-scroll-precision-interpolate-page nil)
  '(pixel-scroll-precision-interpolation-total-time 0.2)
  '(pixel-scroll-precision-mode nil)
@@ -56,8 +60,8 @@
  '(speedbar-use-images nil)
  '(split-height-threshold 80)
  '(split-width-threshold 120)
- '(tab-width 4)
  '(tab-bar-show nil)
+ '(tab-width 4)
  '(tool-bar-mode nil)
  '(treesit-font-lock-level 4)
  '(truncate-lines t nil nil "Customized with use-package olivetti")

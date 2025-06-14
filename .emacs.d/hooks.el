@@ -13,6 +13,16 @@
 
 ;; org ;;
 (add-hook 'org-mode-hook 'my/org-settings)
+;;;;;; org headings toggleable by mouse
+(defvar my/org-mouse-map (make-sparse-keymap))
+(org-defkey my/org-mouse-map [mouse-1] 'org-cycle)
+(add-hook 'org-mode-hook
+		  (defun my/org-mouse-map-hook ()
+			(font-lock-add-keywords
+			 nil
+			 `((,(rx (and bol (one-or-more "*") (one-or-more space) (group-n 1 (one-or-more any)) eol))
+				(0 `(face nil keymap ,my/org-mouse-map mouse-face highlight) prepend)))
+			 t)))
 
 ;; dired ;;
 (add-hook 'dired-mode-hook

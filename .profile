@@ -20,10 +20,10 @@ export PATH="$PATH:$HOME/.local/bin/"
 export PATH="$PATH:$HOME/.local/bin/snippets/"
 export PATH="$PATH:./node_modules/.bin/"
 
-export QT_QPA_PLATFORM=wayland
+# export QT_QPA_PLATFORM=wayland
 # export XDG_CURRENT_DESKTOP=sway
 # export XDG_SESSION_DESKTOP=sway
-export XDG_CURRENT_SESSION_TYPE=wayland
+# export XDG_CURRENT_SESSION_TYPE=wayland
 export LC_ALL="en_US.UTF-8"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

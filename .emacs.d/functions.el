@@ -1,3 +1,9 @@
+(defun my/god-mode-or-exit()
+  (interactive)
+  (if (eq (god-local-mode) 0)
+	  (god-local-mode 1)
+	(keyboard-escape-quit)))
+
 (unless (version< emacs-version "27")
   (use-package tab-line
 	:ensure nil

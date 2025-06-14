@@ -5,6 +5,8 @@
 (use-package org-modern :ensure t)
 
 ;; languages
+(use-package web-mode :ensure)
+
 (use-package go-mode
   :ensure t
   :mode "\\.go\\'"
