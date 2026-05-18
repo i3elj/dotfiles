@@ -1,34 +1,22 @@
 ;; Code ;;
-(add-hook 'prog-mode-hook #'my/olivetti-settings)
-(add-hook 'prog-mode-hook (lambda ()
-							(adaptive-wrap-prefix-mode)))
-(add-hook 'prog-mode-hook (lambda () (cua-mode)))
+(add-hook 'prog-mode-hook (lambda () (adaptive-wrap-prefix-mode)))
 (add-hook 'web-mode-hook 'company-mode)
 (add-hook 'web-mode-hook 'hs-minor-mode)
 (add-hook 'sql-mode-hook 'indent-tabs-mode)
-(add-hook 'elixir-ts-mode-hook
-		  (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-(add-hook 'heex-ts-mode-hook
-		  (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;; org ;;
 (add-hook 'org-mode-hook 'my/org-settings)
+
 ;;;;;; org headings toggleable by mouse
 (defvar my/org-mouse-map (make-sparse-keymap))
 (org-defkey my/org-mouse-map [mouse-1] 'org-cycle)
 (add-hook 'org-mode-hook
-		  (defun my/org-mouse-map-hook ()
-			(font-lock-add-keywords
-			 nil
-			 `((,(rx (and bol (one-or-more "*") (one-or-more space) (group-n 1 (one-or-more any)) eol))
-				(0 `(face nil keymap ,my/org-mouse-map mouse-face highlight) prepend)))
-			 t)))
-
-;; dired ;;
-(add-hook 'dired-mode-hook
-		  (lambda ()
-			;; (dired-hide-details-mode 1)
-			(setq display-line-numbers nil)))
+	  (defun my/org-mouse-map-hook ()
+		(font-lock-add-keywords
+		 nil
+		 `((,(rx (and bol (one-or-more "*") (one-or-more space) (group-n 1 (one-or-more any)) eol))
+		(0 `(face nil keymap ,my/org-mouse-map mouse-face highlight) prepend)))
+		 t)))
 
 ;; post before, after ;;
 (add-hook 'post-command-hook #'my/god-mode-update-cursor-type)

@@ -15,6 +15,7 @@
 .emacs.d/lsp-cache/
 .emacs.d/.lsp-session-v1
 .emacs.d/.emacs.desktop*
+.emacs.d/*~
 .fluxbox/lastwallpaper
 
 

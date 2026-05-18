@@ -23,15 +23,11 @@
 	  kept-new-versions 20
 	  kept-old-versions 5)
 
-(set-face-attribute 'default nil :family "Liberation Mono" :height 120)
-(consult-theme 'seashell)
+;; (set-face-attribute 'default nil :family "FantasqueSansM Nerd Font" :height 140)
+(set-face-attribute 'default nil :family "monospace" :height 130)
+(consult-theme 'doom-oksolar-light)
+;; (consult-theme 'modus-vivendi-deuteranopia)
 
-(setq default-frame-alist
-	  '((height . 48) (width . 86)
-		(left . 480) (top . 46)
-		(vertical-scroll-bars . nil)
-		(horizontal-scroll-bars . nil)
-		(tool-bar-lines . 0)
-		(alpha-background . 100)))
+(set-frame-parameter nil 'alpha-background 100)
 
 (desktop-save-mode 1)
